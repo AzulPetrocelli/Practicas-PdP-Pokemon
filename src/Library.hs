@@ -40,6 +40,8 @@ leGanaA pokemon1 pokemon2
     | tipo pokemon1 == Planta && tipo pokemon2 == Agua = True
     | otherwise = False
 
+{----------------------------------------------------PUNTO 2------------------------------------------------}
+
 aQuePokemonesLeGana :: Pokemon -> [Pokemon] -> [Pokemon]
 aQuePokemonesLeGana pokemon (p:ps)
     | pokemon `leGanaA`  p && ps == [] = [p] 
