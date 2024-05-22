@@ -1,7 +1,3 @@
-# ejercicio-alumno
+# Pokemon con listas y recursión
 
-## Integrantes
-
-- integrante1 (usuario github)
-- integrante2 (usuario github)
-...
+## Alumno: Azul Petrocelli
