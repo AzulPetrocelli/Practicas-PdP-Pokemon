@@ -47,3 +47,14 @@ aQuePokemonesLeGana pokemon (p:ps)
     | pokemon `leGanaA`  p && ps == [] = [p] 
     | p `leGanaA` pokemon = aQuePokemonesLeGana pokemon ps
     | pokemon `leGanaA`  p = p : aQuePokemonesLeGana pokemon ps
+
+{----------------------------------------------------PUNTO 3------------------------------------------------}
+
+aCuantosPokemonesLesGana :: Pokemon -> [Pokemon] -> Number
+aCuantosPokemonesLesGana pokemon pokemones= length  (aQuePokemonesLeGana pokemon pokemones)
+
+quienEsElMasPicante :: [Pokemon] -> Pokemon
+quienEsElMasPicante (p1:p2:ps)
+    | quienEsElMasPicante [p1] = p1
+    | aCuantosPokemonesLesGana p1 (p2:ps) > aCuantosPokemonesLesGana p2 (p1:ps) = quienEsElMasPicante (p1:ps)
+    | aCuantosPokemonesLesGana p1 (p2:ps) < aCuantosPokemonesLesGana p2 (p1:ps) = quienEsElMasPicante (p2:ps)
