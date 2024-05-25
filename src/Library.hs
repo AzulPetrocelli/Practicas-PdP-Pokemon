@@ -43,10 +43,7 @@ leGanaA pokemon1 pokemon2
 {----------------------------------------------------PUNTO 2------------------------------------------------}
 
 aQuePokemonesLeGana :: Pokemon -> [Pokemon] -> [Pokemon]
-aQuePokemonesLeGana pokemon (p:ps)
-    | pokemon `leGanaA`  p && ps == [] = [p] 
-    | p `leGanaA` pokemon = aQuePokemonesLeGana pokemon ps
-    | pokemon `leGanaA`  p = p : aQuePokemonesLeGana pokemon ps
+aQuePokemonesLeGana pokemon pokemones = filter (leGanaA pokemon) pokemones
 
 {----------------------------------------------------PUNTO 3------------------------------------------------}
 
@@ -54,7 +51,9 @@ aCuantosPokemonesLesGana :: Pokemon -> [Pokemon] -> Number
 aCuantosPokemonesLesGana pokemon pokemones= length  (aQuePokemonesLeGana pokemon pokemones)
 
 quienEsElMasPicante :: [Pokemon] -> Pokemon
-quienEsElMasPicante (p1:p2:ps)
-    | quienEsElMasPicante [p1] = p1
-    | aCuantosPokemonesLesGana p1 (p2:ps) > aCuantosPokemonesLesGana p2 (p1:ps) = quienEsElMasPicante (p1:ps)
-    | aCuantosPokemonesLesGana p1 (p2:ps) < aCuantosPokemonesLesGana p2 (p1:ps) = quienEsElMasPicante (p2:ps)
+quienEsElMasPicante pokemones = foldl1 (elMejorDeDos pokemones) pokemones
+
+elMejorDeDos :: [Pokemon] -> Pokemon -> Pokemon -> Pokemon
+elMejorDeDos pokemones poke1 poke2
+    | aCuantosPokemonesLesGana poke1 pokemones >= aCuantosPokemonesLesGana poke2 pokemones= poke1
+    | otherwise = poke2
